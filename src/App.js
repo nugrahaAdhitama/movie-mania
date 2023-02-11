@@ -11,8 +11,9 @@ const App = () => {
     });
   }, []);
 
-  const search = (q) => {
-    console.log(q);
+  const search = async (q) => {
+    const query = await searchMovie(q);
+    console.log(query);
   };
 
   const PopularMovieList = () => {
