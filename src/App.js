@@ -1,13 +1,53 @@
 import "./App.css";
+import { getMovieList, searchMovie } from "./api";
+import { useEffect, useState } from "react";
 
-function App() {
+const App = () => {
+  const [popularMovies, setPopularMovies] = useState([]);
+
+  useEffect(() => {
+    getMovieList().then((result) => {
+      setPopularMovies(result);
+    });
+  }, []);
+
+  const search = (q) => {
+    console.log(q);
+  };
+
+  const PopularMovieList = () => {
+    return popularMovies.map((movie, i) => {
+      return (
+        <div className="movie-wrapper" key={i}>
+          <div className="movie-title">{movie.title}</div>
+          <img
+            src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`}
+            alt="tes"
+            className="movie-image"
+          />
+          <div className="movie-date">{movie.realease_date}</div>
+          <div className="movie-rate">{movie.vote_average}</div>
+        </div>
+      );
+    });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Movie Mania</h1>
+        <input
+          type="text"
+          placeholder="Cari film kesayangan...."
+          className="movie-search"
+          onChange={({ target }) => search(target.value)}
+        />
+
+        <div className="movie-container">
+          <PopularMovieList />
+        </div>
       </header>
     </div>
   );
-}
-
+};
 export default App;
