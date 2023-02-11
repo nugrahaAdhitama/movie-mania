@@ -18,6 +18,8 @@ const App = () => {
     }
   };
 
+  console.log("halo");
+
   const PopularMovieList = () => {
     return popularMovies.map((movie, i) => {
       return (
