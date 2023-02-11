@@ -25,7 +25,7 @@ const App = () => {
             alt="tes"
             className="movie-image"
           />
-          <div className="movie-date">{movie.realease_date}</div>
+          <div className="movie-date">Release: {movie.release_date}</div>
           <div className="movie-rate">{movie.vote_average}</div>
         </div>
       );
